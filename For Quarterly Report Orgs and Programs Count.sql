@@ -1,3 +1,12 @@
+
+--By Divya Chaudhary
+
+-- This query retrieves a comprehensive view of program details across various organizations.
+-- It focuses on program names, organization names, program start and end dates, creation dates, 
+-- activity status, comments, program types, and service provider information.
+-- The query also filters out specific organizations and programs based on their IDs to refine the results.
+
+
 ﻿SELECT        
        HIFIS_Programs.[Name] AS "PROG NAME"
        ,HIFIS_Organizations.Name AS "ORG NAME"
@@ -11,11 +20,14 @@
         ,HIFIS_Program_ServiceProviders.DateEnd AS "Prog at Org End"
         ,HIFIS_Program_ServiceProviders.Comments AS "Prog at Comments"
         ,HIFIS_Organizations.ClusterID AS "Cluster ID#"
-         FROM [HIFIS_prod].[dbo].[HIFIS_Programs]
+         -- Join operations are used to combine data from Programs, Service Providers, Program Types, and Organizations tables.
+      FROM [HIFIS_prod].[dbo].[HIFIS_Programs]
   JOIN HIFIS_Program_ServiceProviders on HIFIS_Programs.ProgramID = HIFIS_Program_ServiceProviders.ProgramID
   JOIN HIFIS_ProgramTypes on HIFIS_Programs.ProgramTypeID = HIFIS_ProgramTypes.ID
   JOIN HIFIS_Organizations on HIFIS_Program_ServiceProviders.OrganizationID = HIFIS_Organizations.OrganizationID
   JOIN HIFIS_Cluster on HIFIS_Organizations.ClusterID = HIFIS_Cluster.ClusterID
+       
+       -- The WHERE clause excludes certain organizations and programs, and the results are ordered by program names.
   WHERE
   HIFIS_Organizations.ClusterID NOT IN (29, 38, 41, 28, 31, 26, 39, 30, 40, 27, 37)
   AND HIFIS_Organizations.OrganizationID <> 1
