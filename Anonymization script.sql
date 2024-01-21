@@ -1,11 +1,30 @@
 
+-- By Divya Chaudhary
+-- Anonymizes MetaDataSearch field in HIFIS_Addresses table for privacy
 UPDATE HIFIS_Addresses SET HIFIS_Addresses.MetaDataSearch = LEFT(NEWID(), LEN(HIFIS_Addresses.MetaDataSearch)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_Addresses.MetaDataSearch)/2)
+
+-- Updates Comments field in HIFIS_Appointments table with anonymized data
 UPDATE HIFIS_Appointments SET HIFIS_Appointments.Comments = LEFT(NEWID(), LEN(HIFIS_Appointments.Comments)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_Appointments.Comments)/2)
+
+-- Anonymizes Description field in HIFIS_Appointments table
 UPDATE HIFIS_Appointments SET HIFIS_Appointments.Description = LEFT(NEWID(), LEN(HIFIS_Appointments.Description)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_Appointments.Description)/2)
+
+-- Anonymizes VACCaseWorker field in HIFIS_ArmyServicePeriods table
 UPDATE HIFIS_ArmyServicePeriods SET HIFIS_ArmyServicePeriods.VACCaseWorker = LEFT(NEWID(), LEN(HIFIS_ArmyServicePeriods.VACCaseWorker)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_ArmyServicePeriods.VACCaseWorker)/2)
+
+-- Anonymizes Comments field in HIFIS_ArmyServicePeriods table
 UPDATE HIFIS_ArmyServicePeriods SET HIFIS_ArmyServicePeriods.Comments = LEFT(NEWID(), LEN(HIFIS_ArmyServicePeriods.Comments)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_ArmyServicePeriods.Comments)/2)
+
+-- Anonymizes SearchValue in HIFIS_AuditLog for enhanced data security
 UPDATE HIFIS_AuditLog SET HIFIS_AuditLog.SearchValue = LEFT(NEWID(), LEN(HIFIS_AuditLog.SearchValue)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_AuditLog.SearchValue)/2)
+
+-- Anonymizes Comments in HIFIS_BailEvents to maintain client confidentiality
 UPDATE HIFIS_BailEvents SET HIFIS_BailEvents.Comments = LEFT(NEWID(), LEN(HIFIS_BailEvents.Comments)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_BailEvents.Comments)/2)
+
+-- Rest of the queries follow a similar pattern of updating various fields across different tables with anonymized data for privacy and security reasons.
+
+
+
 UPDATE HIFIS_BedStatusHistory SET HIFIS_BedStatusHistory.Comments = LEFT(NEWID(), LEN(HIFIS_BedStatusHistory.Comments)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_BedStatusHistory.Comments)/2)
 UPDATE HIFIS_Bulletins SET HIFIS_Bulletins.Subject = LEFT(NEWID(), LEN(HIFIS_Bulletins.Subject)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_Bulletins.Subject)/2)
 UPDATE HIFIS_Bulletins SET HIFIS_Bulletins.Description = LEFT(NEWID(), LEN(HIFIS_Bulletins.Description)/2) + LEFT(ABS(CHECKSUM(NEWID())), LEN(HIFIS_Bulletins.Description)/2)
