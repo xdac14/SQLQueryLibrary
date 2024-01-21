@@ -1,3 +1,13 @@
+/*This SQL script declares variables for organization filtering and start date, 
+  and then uses a Common Table Expression (CTE) named RankedConsents. 
+  The CTE retrieves client consent details, including start and expiry dates, document IDs,
+  and consent types, along with organizational names. It also ranks these consents per client based on the most recent start date and document ID.
+
+The main SELECT statement at the end extracts the most recent consent record for each client, applying additional filters for document ID and specific
+  organization names. It's designed to provide a focused dataset on recent client consents while excluding specific organizations and considering a start date filter set by the user.*/
+
+
+-- By Divya
 DECLARE @FilterOrgID INT = NULL; -- Replace NULL with a specific OrgID to filter, or leave it as NULL to not filter by OrgID
 DECLARE @FilterStartDate DATE = '2023-09-01'; -- Add this filter for startDate
 
